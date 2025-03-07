@@ -11,18 +11,20 @@ This app will provide taxifares in the city of NY based data until 2015 ''')
 col1, col2 = st.columns(2)
 
 
-date_ =st.date_input('Enter a date')
-time_ =st.time_input(label='Time of pickup',)
+
+
 
 with col1:
     st.write('Pick up location')
     pick_add = st.text_input(label = 'Enter the pickup address')
+    date_ =st.date_input('Enter a date')
     # p_lon = st.number_input(label='Enter the pickup longitude', min_value=-74.7,max_value=-74.3)
     # p_lat = st.number_input(label= 'Enter the pickup latitude', min_value =40.5, max_value=40.9)
 
 with col2:
     st.write('Drop up location')
     drop_add = st.text_input(label = 'Enter the DropOff address')
+    time_ =st.time_input(label='Time of pickup',)
     # d_lon =st.number_input(label='Enter the dropoff longtitude', min_value=-74.7,max_value=-74.3)
     # d_lat = st.number_input(label= 'Enter the dropoff latitude', min_value =40.5, max_value=40.9)
 
