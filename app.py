@@ -30,7 +30,7 @@ with col2:
 
 pass_count = st.select_slider('Number of people:', ['1','2', '3', '4','5'])
 
-geolocator = Nominatim(user_agent="geoapi_explorer")  # Set a unique user agent
+geolocator = Nominatim(user_agent="taxifarepredkan")  # Set a unique user agent
 pick_loc = geolocator.geocode(pick_add)
 drop_loc = geolocator.geocode(drop_add)
 
@@ -43,17 +43,22 @@ if url == 'https://taxifare.lewagon.ai/predict':
     st.markdown('Maybe you want to use your own API for the prediction, not the one provided by Le Wagon...')
 
 
-#2.
-params = {
-    'pickup_datetime': f'{date_} {time_}',
-    'pickup_longitude': pick_loc.longitude ,
-    'pickup_latitude':  pick_loc.latitude,
-    'dropoff_longitude': drop_loc.longitude,
-    'dropoff_latitude': drop_loc.latitude,
-    'passenger_count': pass_count,
-}
-import requests
-respone = requests.get(url, params=params).json()
+respone = {}
+
+try:
+    params = {
+        'pickup_datetime': f'{date_} {time_}',
+        'pickup_longitude': pick_loc.longitude,
+        'pickup_latitude':  pick_loc.latitude,
+        'dropoff_longitude': drop_loc.longitude,
+        'dropoff_latitude': drop_loc.latitude,
+        'passenger_count': pass_count,
+    }
+    import requests
+    respone = requests.get(url, params=params).json()
+except AttributeError:
+    respone['fare'] = 0
+
 
 
 
